@@ -49,5 +49,9 @@ public class MovieTest {
         assertEquals(1, movie.getRank());
     }
 
-
+    @Test
+    public void toStringOverriden() {
+        Movie movie = new Movie("The Room", "Psychodrama", 1);
+        assertEquals("Title: The Room, Genre: Psychodrama, Rank: 1", movie.toString());
+    }
 }
