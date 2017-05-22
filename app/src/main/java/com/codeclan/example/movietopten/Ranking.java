@@ -1,6 +1,7 @@
 package com.codeclan.example.movietopten;
 
 import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Created by user on 22/05/2017.
@@ -45,17 +46,33 @@ public class Ranking {
     }
 
 
+    public Movie getMovieByRank(int rankOfSoughtMovie) {
+        return this.rankingList.get(rankOfSoughtMovie-1);
+    }
+
+    public void replaceMovie(Movie movie) {
+        this.rankingList.remove(movie.getRank()-1);
+        this.rankingList.add(movie);
+    }
 
 
+    public Movie findMovieByTitle(String titleOfSoughtMovie) {
+        for (Movie movie : rankingList) {
+            if (movie.getTitle() == titleOfSoughtMovie) {
+                return movie;
+            }
+        }
+                return null;
 
+    }
 
+    public void increaseRanking(String titleOfMovieToChange) {
+        Movie movieToChange = findMovieByTitle(titleOfMovieToChange);
+        int currentRank = (movieToChange.getRank());
+        Movie movieToSwapWith = rankingList.get(currentRank);
+        movieToSwapWith.setRank(currentRank);
+        movieToChange.setRank(currentRank-1);
+        Collections.swap(rankingList, currentRank, currentRank-1);
 
-
-
-
-
-
-
-
-
+    }
 }
