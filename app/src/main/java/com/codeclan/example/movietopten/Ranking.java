@@ -66,13 +66,32 @@ public class Ranking {
 
     }
 
+//    public void increaseRanking(String titleOfMovieToChange) {
+//        Movie movieToChange = findMovieByTitle(titleOfMovieToChange);
+//        int currentRank = (movieToChange.getRank());
+//        Movie movieToSwapWith = rankingList.get(currentRank);
+//        movieToSwapWith.setRank(currentRank);
+//        movieToChange.setRank(currentRank-1);
+//        Collections.swap(rankingList, currentRank, currentRank-1);
+//
+//    }
+
     public void increaseRanking(String titleOfMovieToChange) {
         Movie movieToChange = findMovieByTitle(titleOfMovieToChange);
         int currentRank = (movieToChange.getRank());
-        Movie movieToSwapWith = rankingList.get(currentRank);
-        movieToSwapWith.setRank(currentRank);
+        Movie movieToSwapWith = rankingList.get(currentRank-1);
+
         movieToChange.setRank(currentRank-1);
-        Collections.swap(rankingList, currentRank, currentRank-1);
+
+        Movie cachedMovie = movieToSwapWith;
+        this.rankingList.add(10, cachedMovie);
+
+        replaceMovie(movieToChange);
+
+        cachedMovie.setRank(currentRank);
+        replaceMovie(cachedMovie);
+        rankingList.remove(10);
 
     }
+
 }
